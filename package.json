@@ -1,0 +1,19 @@
+﻿{
+  "name": "nodejs-final-project",
+  "version": "1.0.0",
+  "description": "Simple Node.js project with routes/controllers/models and starter frontend.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "keywords": ["node", "express", "mvc"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}
