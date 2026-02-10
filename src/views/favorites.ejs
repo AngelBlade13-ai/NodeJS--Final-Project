@@ -1,0 +1,33 @@
+﻿<%- include("partials/head", { title }) %>
+<%- include("partials/nav") %>
+
+<main class="favorites-page">
+  <section class="card">
+    <h1>Your Favorites</h1>
+    <% if (favorites.length === 0) { %>
+      <p>No favorites yet.</p>
+    <% } %>
+
+    <div class="grid">
+      <% favorites.forEach((movie) => { %>
+        <div class="movie">
+          <div class="poster">
+            <% if (movie.posterPath) { %>
+              <img src="https://image.tmdb.org/t/p/w300<%= movie.posterPath %>" alt="<%= movie.title %>" />
+            <% } else { %>
+              <div class="placeholder">No Image</div>
+            <% } %>
+          </div>
+          <h3><%= movie.title %></h3>
+          <p><%= movie.releaseDate || "" %></p>
+          <form method="POST" action="/favorites/remove">
+            <input type="hidden" name="movieId" value="<%= movie.movieId %>" />
+            <button type="submit">Remove</button>
+          </form>
+        </div>
+      <% }) %>
+    </div>
+  </section>
+</main>
+
+<%- include("partials/footer") %>

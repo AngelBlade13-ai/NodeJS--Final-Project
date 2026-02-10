@@ -1,0 +1,45 @@
+﻿<%- include("partials/head", { title }) %>
+<%- include("partials/nav") %>
+
+<main class="movie-page">
+  <section class="card">
+    <% if (error) { %>
+      <p class="error"><%= error %></p>
+    <% } %>
+
+    <% if (movie) { %>
+      <div class="movie-detail">
+        <div>
+          <% if (movie.poster_path) { %>
+            <img class="detail-poster" src="https://image.tmdb.org/t/p/w400<%= movie.poster_path %>" alt="<%= movie.title %>" />
+          <% } %>
+        </div>
+        <div>
+          <h1><%= movie.title %></h1>
+          <p class="tagline"><%= movie.tagline || "" %></p>
+          <p><%= movie.overview || "No overview available." %></p>
+          <p><strong>Release:</strong> <%= movie.release_date || "" %></p>
+          <p><strong>Rating:</strong> <%= movie.vote_average || "" %></p>
+
+          <% if (!isFavorite) { %>
+            <form method="POST" action="/favorites/add" class="favorite-form">
+              <input type="hidden" name="movieId" value="<%= movie.id %>" />
+              <input type="hidden" name="title" value="<%= movie.title %>" />
+              <input type="hidden" name="posterPath" value="<%= movie.poster_path || "" %>" />
+              <input type="hidden" name="releaseDate" value="<%= movie.release_date || "" %>" />
+              <button type="submit">Add to Favorites</button>
+            </form>
+          <% } else { %>
+            <div class="favorite-status">Movie is already favorited.</div>
+            <form method="POST" action="/favorites/remove" class="favorite-form">
+              <input type="hidden" name="movieId" value="<%= movie.id %>" />
+              <button type="submit">Remove Favorite</button>
+            </form>
+          <% } %>
+        </div>
+      </div>
+    <% } %>
+  </section>
+</main>
+
+<%- include("partials/footer") %>

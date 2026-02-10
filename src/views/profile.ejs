@@ -1,0 +1,12 @@
+﻿<%- include("partials/head", { title }) %>
+<%- include("partials/nav") %>
+
+<main class="profile-page">
+  <section class="card">
+    <h1>Your Profile</h1>
+    <p><strong>Email:</strong> <%= user.email %></p>
+    <p><strong>Favorites:</strong> <%= count %></p>
+  </section>
+</main>
+
+<%- include("partials/footer") %>

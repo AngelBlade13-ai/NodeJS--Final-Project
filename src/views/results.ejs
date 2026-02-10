@@ -1,0 +1,71 @@
+﻿<%- include("partials/head", { title }) %>
+<%- include("partials/nav") %>
+
+<main class="results">
+  <section class="card">
+    <h1>Search Results</h1>
+    <% if (!user) { %>
+      <div class="banner">Login required to search and view movie details.</div>
+    <% } %>
+    <form class="search" method="GET" action="/movies/search">
+      <input type="text" name="query" value="<%= query %>" placeholder="Search for a movie..." />
+      <button type="submit">Search</button>
+    </form>
+
+    <% if (error) { %>
+      <p class="error"><%= error %></p>
+    <% } %>
+
+    <% if (!error && results.length === 0 && query) { %>
+      <p>No results found.</p>
+    <% } %>
+
+    <div class="grid">
+      <% results.forEach((movie) => { %>
+        <% const saved = favoriteIds && favoriteIds.has(String(movie.id)); %>
+        <div class="movie-card">
+          <a class="movie" href="/movies/<%= movie.id %>">
+            <div class="poster">
+              <% if (movie.poster_path) { %>
+                <img src="https://image.tmdb.org/t/p/w300<%= movie.poster_path %>" alt="<%= movie.title %>" />
+              <% } else { %>
+                <div class="placeholder">No Image</div>
+              <% } %>
+            </div>
+            <h3><%= movie.title %></h3>
+            <p><%= movie.release_date || "" %></p>
+          </a>
+          <% if (!saved) { %>
+            <form class="quick-save" method="POST" action="/favorites/add">
+              <input type="hidden" name="movieId" value="<%= movie.id %>" />
+              <input type="hidden" name="title" value="<%= movie.title %>" />
+              <input type="hidden" name="posterPath" value="<%= movie.poster_path || "" %>" />
+              <input type="hidden" name="releaseDate" value="<%= movie.release_date || "" %>" />
+              <button type="submit">Save</button>
+            </form>
+          <% } else { %>
+            <div class="favorite-status">Already favorited</div>
+            <form class="quick-save" method="POST" action="/favorites/remove">
+              <input type="hidden" name="movieId" value="<%= movie.id %>" />
+              <button type="submit">Remove</button>
+            </form>
+          <% } %>
+        </div>
+      <% }) %>
+    </div>
+
+    <% if (!error && totalPages > 1) { %>
+      <div class="pagination">
+        <% if (page > 1) { %>
+          <a href="/movies/search?query=<%= encodeURIComponent(query) %>&page=<%= page - 1 %>">Prev</a>
+        <% } %>
+        <span>Page <%= page %> of <%= totalPages %></span>
+        <% if (page < totalPages) { %>
+          <a href="/movies/search?query=<%= encodeURIComponent(query) %>&page=<%= page + 1 %>">Next</a>
+        <% } %>
+      </div>
+    <% } %>
+  </section>
+</main>
+
+<%- include("partials/footer") %>

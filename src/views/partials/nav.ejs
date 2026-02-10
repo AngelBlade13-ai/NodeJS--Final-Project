@@ -1,0 +1,22 @@
+﻿    <nav class="nav">
+      <a class="brand" href="/">Movie Search DB</a>
+      <div class="links">
+        <a href="/">Home</a>
+        <a href="/movies/search">Search</a>
+        <% if (user) { %>
+          <a href="/favorites">Favorites</a>
+          <a href="/profile">Profile</a>
+        <% } %>
+      </div>
+      <div class="auth">
+        <% if (user) { %>
+          <span class="user"><%= user.email %></span>
+          <form method="POST" action="/auth/logout">
+            <button type="submit">Logout</button>
+          </form>
+        <% } else { %>
+          <a href="/auth/login">Login</a>
+          <a href="/auth/register">Register</a>
+        <% } %>
+      </div>
+    </nav>
