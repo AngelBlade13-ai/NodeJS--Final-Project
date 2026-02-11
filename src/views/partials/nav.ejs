@@ -6,6 +6,9 @@
         <% if (user) { %>
           <a href="/favorites">Favorites</a>
           <a href="/profile">Profile</a>
+          <% if (user.email && user.email.toLowerCase() === (process.env.ADMIN_EMAIL || "").toLowerCase()) { %>
+            <a href="/admin">Admin</a>
+          <% } %>
         <% } %>
       </div>
       <div class="auth">
