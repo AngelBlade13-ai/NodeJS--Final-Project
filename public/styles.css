@@ -66,6 +66,14 @@ body {
 }
 .trending { width: 100%; max-width: 1100px; }
 .trending h2 { margin-bottom: 12px; }
+.trending .movie {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.trending .release {
+  margin-top: auto;
+}
 
 .search { display: flex; gap: 8px; margin-top: 16px; }
 .search input { flex: 1; padding: 10px; border: 2px solid var(--fg); }
@@ -116,9 +124,15 @@ body {
   display: block;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+.movie {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 .movie h3 { margin: 8px 0 4px; font-size: 1rem; }
 .poster img { width: 100%; display: block; border: 2px solid var(--fg); }
 .placeholder { border: 2px dashed var(--fg); padding: 24px; text-align: center; }
+.release { margin-top: auto; }
 
 
 .quick-save {

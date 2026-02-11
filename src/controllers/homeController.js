@@ -1,4 +1,7 @@
 ﻿const TMDB_BASE_URL = "https://api.themoviedb.org/3";
+const fetch =
+  global.fetch ||
+  ((...args) => import("node-fetch").then(({ default: fetch }) => fetch(...args)));
 
 function getApiKey() {
   return process.env.TMDB_API_KEY || "";

@@ -33,7 +33,7 @@
               <% } %>
             </div>
             <h3><%= movie.title %></h3>
-            <p><%= movie.release_date || "" %></p>
+            <p class="release"><%= movie.release_date || "" %></p>
           </a>
           <% if (!saved) { %>
             <form class="quick-save" method="POST" action="/favorites/add">
