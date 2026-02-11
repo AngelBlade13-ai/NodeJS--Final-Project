@@ -96,6 +96,23 @@ body {
 }
 .auth-page form { display: grid; gap: 8px; }
 .auth-page input { padding: 10px; border: 2px solid var(--fg); }
+.profile-form { display: grid; gap: 8px; margin-top: 16px; }
+.profile-form input {
+  padding: 10px;
+  border: 2px solid var(--fg);
+  font-family: inherit;
+}
+.profile-form button {
+  padding: 10px 16px;
+  border: 2px solid var(--fg);
+  background: var(--accent-2);
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: none;
+}
+.profile-form button:hover {
+  box-shadow: 4px 4px 0 var(--accent-3);
+}
 
 .banner {
   margin-top: 12px;

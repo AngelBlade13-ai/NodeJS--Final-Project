@@ -13,6 +13,18 @@ async function getProfile(req, res) {
   });
 }
 
+async function updateProfile(req, res) {
+  const userId = req.session.user.id;
+  const { likes } = req.body;
+
+  await User.findByIdAndUpdate(userId, {
+    likes: (likes || "").trim(),
+  });
+
+  return res.redirect("/profile");
+}
+
 module.exports = {
   getProfile,
+  updateProfile,
 };

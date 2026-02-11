@@ -6,6 +6,11 @@
     <h1>Your Profile</h1>
     <p><strong>Email:</strong> <%= user.email %></p>
     <p><strong>Favorites:</strong> <%= count %></p>
+    <form method="POST" action="/profile" class="profile-form">
+      <label>Likes</label>
+      <input type="text" name="likes" placeholder="Favorite genres, actors, etc." value="<%= user.likes || "" %>" />
+      <button type="submit">Update Profile</button>
+    </form>
   </section>
 </main>
 
