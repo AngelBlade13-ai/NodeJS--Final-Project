@@ -113,6 +113,10 @@ body {
 .profile-form button:hover {
   box-shadow: 4px 4px 0 var(--accent-3);
 }
+.profile-form .secondary {
+  background: var(--card);
+  color: var(--fg);
+}
 
 .banner {
   margin-top: 12px;

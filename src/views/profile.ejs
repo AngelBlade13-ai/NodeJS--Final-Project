@@ -12,6 +12,10 @@
       <input type="text" name="likes" placeholder="Favorite genres, actors, etc." value="" />
       <button type="submit">Update Profile</button>
     </form>
+    <form method="POST" action="/profile" class="profile-form">
+      <input type="hidden" name="likes" value="" />
+      <button type="submit" class="secondary">Clear Likes</button>
+    </form>
   </section>
 </main>
 
